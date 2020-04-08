@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calc | µTools</title>
+	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/sketchy/bootstrap.min.css">
+	<style type="text/css">
+		.main_section{
+			margin-left: 15%;
+			margin-right: 15%;
+			margin-top: 5%;
+		}
+	</style>
+</head>
+<body>
+	<div class="main_section">
+		<h1>Calculator</h1>
+		<br>
+			<form>
+				<table>
+					<tr>
+						<td>A</td>
+						<td><input type="text" name="" id="a" onchange="calculate();"></td>
+					</tr>
+					<tr>
+						<td>B</td>
+						<td><input type="text" name="" id="b" onchange="calculate();"></td>
+					</tr>
+					<tr>
+						<td>Select Operation</td>
+						<td>
+							<select onchange="calculate();" id="op">
+								<option value="1">+</option>
+								<option value="2">-</option>
+								<option value="3">*</option>
+								<option value="4">/</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+				<hr>
+				<table>
+					<tr>
+						<td>Ans &#8594; </td>
+						<td id="c">&nbsp;A <span class="badge badge-pill badge-warning">Selected Operation</span> B</td>
+					</tr>
+				</table>
+			</form>
+			<script type="text/javascript">
+				function calculate(){
+					var x = document.getElementById("op").value;
+					var a = parseInt(document.getElementById("a").value);
+					var b = parseInt(document.getElementById("b").value);
+					console.log(x);
+					if(x==1){
+						document.getElementById("c").innerHTML = a+b;
+					}else if(x==2){
+						document.getElementById("c").innerHTML = a-b;
+					}else if(x==3){
+						document.getElementById("c").innerHTML = a*b;
+					}else if(x==4){
+						document.getElementById("c").innerHTML = a/b;
+					}
+				}
+			</script>
+	</div>
+</body>
+</html>

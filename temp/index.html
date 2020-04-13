@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Token Time Generator</title>
+        <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
+        <style>
+            .mainBox{
+                margin-top: 10vw;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container mainBox">
+            <h1>Token Time Generator</h1>
+            <div class="jumbotron">
+                <div class="form-group has-success">
+                    <label class="form-control-label" for="inputSuccess1"><b>Enter your Token Number</b></label>
+                    <input type="text" value="" placeholder="eg. 51" onchange="checkNumber(this.value)" class="form-control" id="tokenInput">
+                    <div class="valid-feedback" id="tokenInput-msg">Correct Input</div>
+                </div>
+                <div id="resultTimeBox">
+                    <div class="alert alert-dismissible alert-secondary">
+                        Opening Time : <span class="badge badge-success">9:00 AM</span><br>
+                        Duration Per Person : <span class="badge badge-success">5 Mins</span><br>
+                        <strong>Your Time : </strong><br>
+                        <span class="badge badge-dark"><h1 class="display" id="resultTime">Time</h1></span>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success btn-lg btn-block">Generate Token Time</button>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("resultTimeBox").style.display = "none";
+            function checkNumber(x){
+                if(!isNaN(x) && x!==""){
+                    if(x>0){
+                        document.getElementById("tokenInput-msg").innerHTML = "Valid Token";
+                        document.getElementById("tokenInput").className = "form-control is-valid";
+                        generateTime(x);
+                        return 0;
+                    }
+                }
+                document.getElementById("tokenInput-msg").innerHTML = "Invalid Token";
+                document.getElementById("tokenInput").className = "form-control is-invalid";
+            }
+
+            function generateTime(x) {
+                document.getElementById("resultTimeBox").style.display = "block";
+                let minutesLater = x*5;
+                let minutesStart = 9*60;
+                let temp = (minutesStart+minutesLater)/60;
+                let temp2 = (temp + "").split(".");
+                let temp3;
+                temp3 = (((parseInt(temp2[1])/10)*60)%100).toString();
+                document.getElementById("resultTime").innerHTML = (temp2[0]+":"+temp3).toString();    
+            }
+        </script>
+    </body>
+</html>
